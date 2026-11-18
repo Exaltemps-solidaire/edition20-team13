@@ -46,13 +46,13 @@ export default function MaFormation() {
         const estValide = statuts[mod.id] === true;
         const estOuvert = moduleOuvertId === mod.id;
         return (
-          <div key={mod.id} className={styles.module}>
-            <span className={`${styles.statut} ${estValide ? styles.valide : styles.aFaire}`}>
+          <div key={mod.id} className={`card ${styles.module}`}>
+            <span className={`badge ${estValide ? styles.valide : styles.aFaire}`}>
               {estValide ? "Validé" : "À faire"}
             </span>
             <h2>{mod.titre}</h2>
             {!estOuvert && (
-              <button onClick={() => ouvrirModule(mod.id)}>
+              <button className="btn btnPrimary" onClick={() => ouvrirModule(mod.id)}>
                 {estValide ? "Repasser le quiz" : "Faire le quiz"}
               </button>
             )}
@@ -80,7 +80,9 @@ export default function MaFormation() {
                     ))}
                   </div>
                 ))}
-                <button onClick={() => soumettreQuiz(mod.id)}>Valider mes réponses</button>
+                <button className="btn btnPrimary" onClick={() => soumettreQuiz(mod.id)}>
+                  Valider mes réponses
+                </button>
                 {resultat?.moduleId === mod.id && (
                   <p className={styles.resultat}>
                     Score {resultat.score}/{mod.questions.length} —{" "}

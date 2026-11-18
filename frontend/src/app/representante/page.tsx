@@ -28,7 +28,7 @@ export default function VueRepresentante() {
       ) : (
         <ul className={styles.liste}>
           {pretes.map((b) => (
-            <li key={b.id} className={styles.benevole}>
+            <li key={b.id} className={`card ${styles.benevole}`}>
               {b.nom}
             </li>
           ))}

@@ -160,11 +160,25 @@ Avec 30 minutes et un tour de test de 2 minutes seulement (valeur inhabituelleme
 - **Bilan** : Codée et déployée avant que la reprioritisation ci-dessus (qui la renumérote en itération 9) n'apparaisse sur le disque — une autre session travaillait sur ce même dépôt en parallèle pendant le déploiement de l'itération 1. Les 2 critères d'acceptation sont satisfaits (vérifié en local sur le conteneur déployé). 2 tests unitaires sur `filtrerFiches` (mot-clé correspondant → fiche en tête ; mot-clé sans résultat → liste vide), `npm test` passe.
   - **Modifications** : `frontend/src/app/filtrer-fiches.ts` (créé, fonction pure de filtrage) ; `frontend/src/app/filtrer-fiches.test.ts` (créé, 2 tests) ; `frontend/src/app/page.tsx` (champ de recherche, composant client, message « aucun résultat ») ; `frontend/src/app/page.module.css` (styles du champ et du message).
 
+## Itération 10 : Simulations pour le pitch (RAG local, maquette Discord) + passe UX
+
+- **Dans le périmètre** : à la demande du développeur, deux simulations statiques pour présenter au pitch ce qui reste bloqué par des éléments non fournis, plus une passe visuelle sur l'ensemble des écrans existants (jugés « immondes » par le développeur).
+  - `/recherche-avancee` : une question libre comparée par mots-clés aux fiches mémo existantes (pas d'appel réseau, pas d'embeddings) — étiquetée ⚠️ « simulation locale » dans l'écran, pour ne pas laisser croire à une vraie intégration LLM.
+  - `/apercu-discord` : maquette statique (HTML/CSS imitant l'UI Discord) illustrant le parcours bot prévu aux itérations 3-5 — étiquetée ⚠️ « maquette, pas un écran connecté à un vrai serveur Discord ».
+  - Système visuel partagé (`globals.css` : couleurs, `.btn`/`.card`/`.badge`/`.input`) appliqué à tous les écrans (accueil, formation, représentante, sélecteur de rôle).
+- **Hors périmètre** : vrai RAG (bloqué, `OPENAI_API_KEY` non fournie), vrai bot Discord (bloqué, jeton et URL source non fournis).
+- **Critères d'acceptation** :
+  - Étant donné une question tapée dans « Question libre », quand elle correspond à une fiche existante, alors la fiche et un extrait de synthèse s'affichent, avec l'avertissement de simulation visible.
+  - Étant donné l'écran « Aperçu Discord », quand on l'ouvre, alors le parcours bot (canal créé, ressources, notification formatrice) est visible, avec l'avertissement de maquette visible.
+- **Tests unitaires** : 2 sur `rechercherRagSimule` (fiche pertinente retrouvée + synthèse ; repli si aucune correspondance).
+- **Bilan** : Fait. `npm test` → 10 tests (2 api + 8 front). Build statique vérifié (6 routes), déployé, `/health` et `/sante` → 200 sur le conteneur redéployé.
+  - **Modifications** : `frontend/src/app/recherche-avancee/{rag-simule.ts,rag-simule.test.ts,page.tsx,page.module.css}` (créés) ; `frontend/src/app/apercu-discord/{page.tsx,page.module.css}` (créés) ; `frontend/src/app/globals.css` (réécrit, variables + classes `.btn`/`.card`/`.badge`/`.input`) ; `app-shell.tsx`/`.module.css`, `page.tsx`/`.module.css` (accueil), `formation/page.tsx`/`.module.css`, `representante/page.tsx`/`.module.css` (appliquent le nouveau système visuel, liens de nav vers les 2 nouvelles pages).
+
 ## À venir (à détailler au fil de l'eau, selon le temps restant confirmé à chaque itération)
 
 1. Ouverture d'une fiche mémo (écran dédié avec réponse complète et formulation recommandée).
 2. Déplacement des fiches en dur vers l'API (`GET /api/v1/fiches`), pour préparer une vraie source de données.
-3. Question libre documentée (RAG) — **bloquée tant que `OPENAI_API_KEY` n'est pas posée dans le shell qui démarre la plateforme**.
+3. Vraie question libre (RAG avec embeddings) — **bloquée tant que `OPENAI_API_KEY` n'est pas posée dans le shell qui démarre la plateforme** ; `/recherche-avancee` en est la version simulée (itération 10).
 
 ---
 

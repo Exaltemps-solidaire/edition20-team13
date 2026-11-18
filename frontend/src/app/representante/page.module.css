@@ -3,26 +3,19 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  max-width: 800px;
-  padding: 60px;
+  max-width: 720px;
+  padding: 48px 32px 80px;
   margin: 0 auto;
 }
 
 .liste {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   list-style: none;
 }
 
 .benevole {
-  padding: 12px 16px;
-  border: 1px solid #ebebeb;
-  border-radius: 8px;
-}
-
-@media (prefers-color-scheme: dark) {
-  .benevole {
-    border-color: #1a1a1a;
-  }
+  padding: 14px 18px;
+  font-weight: 600;
 }

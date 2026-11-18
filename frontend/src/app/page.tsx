@@ -18,7 +18,7 @@ export default function Home() {
           recommandée par l&rsquo;association.
         </p>
         <input
-          className={styles.recherche}
+          className="input"
           type="search"
           placeholder="Rechercher un mot-clé (ex. filière de soins)"
           value={motCle}
@@ -31,8 +31,8 @@ export default function Home() {
         ) : (
           <ul className={styles.liste}>
             {resultats.map((fiche) => (
-              <li key={fiche.id} className={styles.fiche}>
-                <span className={styles.theme}>{fiche.theme}</span>
+              <li key={fiche.id} className={`card ${styles.fiche}`}>
+                <span className="badge">{fiche.theme}</span>
                 <h2>{fiche.titre}</h2>
                 <p>{fiche.extrait}</p>
               </li>

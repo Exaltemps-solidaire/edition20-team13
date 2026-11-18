@@ -1,53 +1,44 @@
 .page {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   width: 100%;
-  max-width: 800px;
-  padding: 60px;
+  max-width: 720px;
+  padding: 48px 32px 80px;
   margin: 0 auto;
 }
 
 .module {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 20px;
-  border: 1px solid #ebebeb;
-  border-radius: 12px;
-}
-
-.statut {
-  align-self: flex-start;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  padding: 2px 8px;
-  border-radius: 999px;
+  gap: 10px;
+  padding: 22px;
 }
 
 .valide {
-  color: #0a6b2a;
-  background: #e5f6ea;
+  background: var(--success-bg);
+  color: var(--success);
 }
 
 .aFaire {
-  color: #7a2e8c;
-  background: #f3e6f7;
+  background: var(--warning-bg);
+  color: var(--warning);
 }
 
 .question {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  padding: 12px 0;
+}
+
+.question label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
 }
 
 .resultat {
-  font-weight: 600;
-}
-
-@media (prefers-color-scheme: dark) {
-  .module {
-    border-color: #1a1a1a;
-  }
+  font-weight: 700;
 }

@@ -1,53 +1,28 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-  --accent: #7a2e8c;
-
   display: flex;
   flex: 1;
-  flex-direction: column;
-  align-items: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  justify-content: center;
 }
 
 .main {
   display: flex;
   flex: 1;
   width: 100%;
-  max-width: 800px;
+  max-width: 760px;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
-  background-color: var(--foreground);
-  padding: 60px;
+  padding: 48px 32px 80px;
 }
 
 .main h1 {
-  font-size: 32px;
-  font-weight: 600;
-  letter-spacing: -1.2px;
-  color: var(--text-primary);
+  font-size: 30px;
+  font-weight: 700;
 }
 
 .intro {
-  max-width: 480px;
+  max-width: 540px;
   font-size: 16px;
-  line-height: 28px;
-  color: var(--text-secondary);
-}
-
-.recherche {
-  width: 100%;
-  padding: 12px 16px;
-  font-size: 16px;
-  border: 1px solid #ebebeb;
-  border-radius: 8px;
-  color: var(--text-primary);
-  background: var(--background);
 }
 
 .aucunResultat {
@@ -58,7 +33,7 @@
 .liste {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   width: 100%;
   list-style: none;
 }
@@ -66,50 +41,21 @@
 .fiche {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 20px;
-  border: 1px solid #ebebeb;
-  border-radius: 12px;
+  gap: 6px;
+  padding: 20px 22px;
 }
 
 .fiche h2 {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary);
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .fiche p {
   font-size: 14px;
-  line-height: 22px;
-  color: var(--text-secondary);
-}
-
-.theme {
-  align-self: flex-start;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  color: var(--accent);
 }
 
 @media (max-width: 600px) {
   .main {
-    padding: 32px 24px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-    --accent: #d99fe6;
-  }
-
-  .fiche {
-    border-color: #1a1a1a;
+    padding: 32px 20px 60px;
   }
 }

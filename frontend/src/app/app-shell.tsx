@@ -16,9 +16,16 @@ export function AppShell({ children }: { children: ReactNode }) {
         <p>Incarnez un rôle pour découvrir l&rsquo;application.</p>
         <div className={styles.personas}>
           {personas.map((p) => (
-            <button key={p.id} className={styles.persona} onClick={() => choisirPersona(p.id)}>
-              <strong>{p.nom}</strong>
-              <div>{p.description}</div>
+            <button
+              key={p.id}
+              className={`card ${styles.persona}`}
+              onClick={() => choisirPersona(p.id)}
+            >
+              <span className={styles.avatar}>{p.nom[0]}</span>
+              <span className={styles.personaTexte}>
+                <strong>{p.nom}</strong>
+                <span>{p.description}</span>
+              </span>
             </button>
           ))}
         </div>
@@ -33,10 +40,16 @@ export function AppShell({ children }: { children: ReactNode }) {
           <Link href="/">Accueil</Link>
           {persona.role === "benevole" && <Link href="/formation">Ma formation</Link>}
           {persona.role === "representante" && <Link href="/representante">Bénévoles prêtes</Link>}
+          <Link href="/recherche-avancee">Question libre</Link>
+          <Link href="/apercu-discord">Aperçu Discord</Link>
         </nav>
-        <div>
-          {persona.nom} ({persona.description}){" "}
-          <button onClick={changerDeRole}>Changer de rôle</button>
+        <div className={styles.qui}>
+          <span>
+            {persona.nom} · {persona.description}
+          </span>
+          <button className="btn btnSecondary" onClick={changerDeRole}>
+            Changer de rôle
+          </button>
         </div>
       </div>
       {children}

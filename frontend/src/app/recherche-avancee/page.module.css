@@ -1,0 +1,44 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 720px;
+  padding: 48px 32px 80px;
+  margin: 0 auto;
+}
+
+.avertissement {
+  padding: 14px 18px;
+  font-size: 13px;
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.recherche {
+  display: flex;
+  gap: 10px;
+}
+
+.recherche .input {
+  flex: 1;
+}
+
+.reponse {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 22px;
+}
+
+.synthese {
+  color: var(--text-primary);
+}
+
+.sources {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  font-size: 13px;
+}
