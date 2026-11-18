@@ -1,0 +1,53 @@
+.selecteur {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 480px;
+  margin: 80px auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.personas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.persona {
+  padding: 16px;
+  border: 1px solid #ebebeb;
+  border-radius: 12px;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.persona:hover {
+  border-color: #7a2e8c;
+}
+
+.barre {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  border-bottom: 1px solid #ebebeb;
+  font-size: 14px;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .persona,
+  .barre {
+    border-color: #1a1a1a;
+  }
+}

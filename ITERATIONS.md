@@ -49,7 +49,8 @@ Avec 30 minutes et un tour de test de 2 minutes seulement (valeur inhabituelleme
 - **Tests unitaires prévus** : aucun — sélection pure, pas de règle métier à ce stade.
 - **Étapes ajoutées à la démo** : ouvrir l'app, choisir un rôle, vérifier que le bouton de changement fonctionne.
 - ❗️ Le rôle « représentante de l'association » n'existe pas dans le scénario du PRD d'origine (qui ne nomme que « la bénévole sur le terrain » et « la personne rencontrée »). Il est ajouté ici en conséquence directe de l'extension validée (formation + vue représentante, itérations 6 et 8).
-- **Bilan** : _à remplir en fin d'itération_
+- **Bilan** : Codée en même temps que les itérations 6 (formation), 7 (quiz) et 8 (vue représentante) — regroupées en un seul passage à la demande explicite du développeur (« rationalise toutes les itérations en une »), sans passer par 4 cycles DoR/DoD séparés. Les 2 critères d'acceptation sont satisfaits : l'écran « Qui êtes-vous ? » s'affiche avant tout autre écran tant qu'aucun rôle n'est choisi, et le bouton « Changer de rôle » (barre du haut) permet de revenir au sélecteur à tout moment. Build statique Next.js vérifié (`/`, `/formation`, `/representante` génèrent), déployé et vérifié en local (`/health`, `/sante` → 200).
+  - **Modifications** : `frontend/src/app/personas-data.ts` (créé, 2 personas : Camille/bénévole, Morgane/représentante) ; `frontend/src/app/role-context.tsx` (créé, contexte React du rôle incarné, sans persistance entre sessions, conforme au hors-périmètre) ; `frontend/src/app/app-shell.tsx` + `app-shell.module.css` (créés, écran de sélection bloquant + barre de navigation/changement de rôle) ; `frontend/src/app/layout.tsx` (édité, câblage des providers).
 
 ## Itération 3 : Le bot Discord se connecte et poste un message de test dans le canal dédié
 
@@ -109,7 +110,8 @@ Avec 30 minutes et un tour de test de 2 minutes seulement (valeur inhabituelleme
 - **Tests unitaires prévus** : aucun — affichage pur, pas de logique métier.
 - **Étapes ajoutées à la démo** : ouvrir « Ma formation », vérifier que la liste des modules s'affiche.
 - Dépend de l'itération 2 (sélecteur de rôle), désormais positionnée avant — plus de blocage de séquencement.
-- **Bilan** : _à remplir en fin d'itération_
+- **Bilan** : Regroupée avec les itérations 2, 7 et 8 (voir bilan de l'itération 2). Critère satisfait : en incarnant Camille (bénévole), « Ma formation » liste les 2 modules avec leur statut (validé/à faire) propre à la persona. En incarnant la représentante, l'écran affiche un message de redirection au lieu de la liste (hors rôle).
+  - **Modifications** : `frontend/src/app/formation/formations-data.ts` (créé, 2 modules × 5 questions QCM, thèmes repris des fiches mémo) ; `frontend/src/app/formation/statut-context.tsx` (créé, roster en mémoire avec statuts par bénévole) ; `frontend/src/app/formation/page.tsx` + `page.module.css` (créés, liste des modules + statut).
 
 ## Itération 7 : Quiz de validation d'un module de formation
 
@@ -123,7 +125,8 @@ Avec 30 minutes et un tour de test de 2 minutes seulement (valeur inhabituelleme
 - **Fichiers prévus** : composant quiz, fonction de notation + son test (~3 fichiers).
 - **Tests unitaires prévus** : 1 à 2, sur la fonction de notation (calcul du score, seuil de validation à 5/5).
 - **Étapes ajoutées à la démo** : répondre correctement à un quiz, vérifier le passage au statut « validé ».
-- **Bilan** : _à remplir en fin d'itération_
+- **Bilan** : Regroupée avec les itérations 2, 6 et 8 (voir bilan de l'itération 2). Les 2 critères sont satisfaits : `noterQuiz` valide un module à 5/5 et le refuse dès qu'une réponse est fausse (score affiché) ; validé par 2 tests unitaires (`noter-quiz.test.ts`), `npm test` passe.
+  - **Modifications** : `frontend/src/app/formation/noter-quiz.ts` (créé, fonction pure de notation) ; `frontend/src/app/formation/noter-quiz.test.ts` (créé, 2 tests) ; `frontend/src/app/formation/page.tsx` (quiz inline par module, soumission et affichage du score).
 
 ## Itération 8 : Les représentantes voient les bénévoles prêtes pour la visio de validation
 
@@ -138,7 +141,8 @@ Avec 30 minutes et un tour de test de 2 minutes seulement (valeur inhabituelleme
 - **Tests unitaires prévus** : 1, sur le filtrage « tous les modules validés ».
 - **Étapes ajoutées à la démo** : parcours complet persona → formation → vue représentante, une fois ces écrans en place.
 - ❓ Le canal de notification réel (email, Discord, autre) n'est pas précisé dans la passation — à trancher avec les cadreurs avant d'aller au-delà de l'indicateur visuel.
-- **Bilan** : _à remplir en fin d'itération_
+- **Bilan** : Regroupée avec les itérations 2, 6 et 7 (voir bilan de l'itération 2). Les 2 critères sont satisfaits : une bénévole seed (« Léa ») avec ses 2 modules déjà validés apparaît dans la liste « à valider », une autre (« Nadia ») avec un module non validé n'y apparaît pas ; validé par 2 tests unitaires (`benevoles-pretes.test.ts`), `npm test` passe. Roster en mémoire (non persisté), suffisant pour la démo.
+  - **Modifications** : `frontend/src/app/formation/benevoles-pretes.ts` (créé, fonction pure de filtrage) ; `frontend/src/app/formation/benevoles-pretes.test.ts` (créé, 2 tests) ; `frontend/src/app/representante/page.tsx` + `page.module.css` (créés, écran représentante).
 
 ## Itération 9 : La bénévole retrouve une fiche par mot-clé
 
